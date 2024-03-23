@@ -1,0 +1,7 @@
+Assigment for AI engineering internship application at Betterzila (Changumangu Solutions LLP)
+
+We value a deep understanding of LLM models and software development more than a perfect solution. Your ability to adapt to new technologies, handle changing requirements, and apply solid software development practices will be crucial. These skills will be a significant focus during your final interview.
+
+Host the application on the cloud (utilizing free credits) and share the URL with us.
+Create a 1-4 minute Loom video demonstrating the application's functionality and share the URL.
+Provide a GitHub link to the working application.
