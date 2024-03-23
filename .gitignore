@@ -1,3 +1,2 @@
 __pycache__/
-/.env
-/test2.txt
+/backend/.env
