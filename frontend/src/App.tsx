@@ -1,14 +1,20 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown"
 import "./App.css";
+import React from "react";
 
 export default function App() {
+  const bottylogo = require('./assets/images/BottyLogo.png')
+
   const [result, setResult] = useState();
   const [question, setQuestion] = useState('');
   const [file, setFile] = useState();
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
+  type QAPair = { question: string; answer: string };
+  const [qaPairs, setQaPairs] = useState<QAPair[]>([]); //An object of QAPair Array type, starting as an empty array.
+  
   const handleQuestionChange = (event: any) => {
     setQuestion(event.target.value);
     setIsCollapsed(!event.target.value);
@@ -38,7 +44,8 @@ export default function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setResult(data.result);
+        //Take the current state of qaPairs, expand the array, and add an additional object at the end.
+        setQaPairs(qaPairs => [...qaPairs, { question: question, answer: data.result}]);
         setIsCollapsed(false)
         setQuestion('');
         setIsLoading(false)
@@ -51,26 +58,32 @@ export default function App() {
   return (
     <div className="appBlock">
       <div className="title">
-        <h1>Chatty</h1>
-        <hr/>{/** keps both to the side**/}
-        <img src="image.jpg" alt="Logo"/>
+        <h1 className="mainTitle">Chatty</h1>
+        <img className='mainLogo' src={bottylogo} alt="Logo"/>
       </div>
       
       <form onSubmit={handleSubmit} className="form">
 
-        <div className={`collapsed ${isCollapsed ? '' : 'show'}`}>
-          <h2>You</h2>
-          <p>{question}</p>
-        </div>
+      {
+      qaPairs.length === 0 
+      ? 'No questions so far!'
+      : qaPairs.map((qaPair, index) => (
+          <React.Fragment key={index}>
+            <div className={`question ${isCollapsed ? '' : 'show'}`}>
+              <h2>You</h2>
+              <p>{qaPair.question}</p>
+            </div>
+            <div className={`answer ${!qaPair.answer && index===0 ? 'first' : 'other'}`}>
+              <h2>Chatty</h2>
+              <ReactMarkdown className="resultOutput">
+                {isLoading ? 'Thinking...' : qaPair.answer ? qaPair.answer : 'Ready to Help You!'}
+              </ReactMarkdown>
+            </div>
+          </React.Fragment>
+        ))
+      }
 
-        <div className="expanded">
-          {/**Create html from the markdown provided by the chatbot**/}
-          <h2>Chatty</h2>
-          <ReactMarkdown className="resultOutput">
-            {isLoading ? 'Thinking...' : result ? result : 'Ready to Help You!'}
-          </ReactMarkdown>
-        </div>
-
+        
         <div className="input-button-div">
           <input
             className="questionInput"

@@ -45,6 +45,7 @@ h2{
 
 body {
     background-color: #f0f0f0;
+    background-image:url(assets/images/SkyCreativeCommons.jpg);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,6 +58,37 @@ body {
 div#root {
   align-self: flex-start;
   width: 50%;
+  margin-top:1%;
+}
+
+p {
+  margin-bottom: 2px;
+  margin-top: 2px;
+}
+
+ul {
+  margin-top: 2px;
+}
+
+blockquote {
+  margin-top: 10px;
+}
+
+img.mainLogo{
+  height: 75px; /*Used to be 35% but that led to a bug where the div adjusted to the theoretical size of the image and not its actual size*/
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+h1.mainTitle{
+  color: darkcyan;
+  margin-bottom: 0%;
+}
+
+div.title{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .appBlock {
@@ -66,13 +98,8 @@ div#root {
     height: 80vh;
     border-radius: 10px;
 }
-.title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: darkcyan;
-}
-.collapsed {
+
+.question {
     display: none;
     background-color: #d0d0d0;
     border-radius: 10px;
@@ -80,19 +107,24 @@ div#root {
     padding-bottom:1px;
     margin-bottom: 5px;
 }
-.collapsed.show {
+.question.show {
   display: block;
 }
 
-.expanded {
-    flex-grow: 1;
-    background-color: #e0e0e0;
-    border-radius: 10px;
-    height: 90%;
-    overflow: auto;
-    margin-bottom: 1%;
-    padding-left: 10px;
+.answer {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  padding-left: 10px;
+  overflow: auto;
+  margin-bottom: 1.5%;
 }
+
+/* This was used to 
+.answer first {
+  height: 90%;
+}*/
+
+
 .input-button-div {
     display: flex;
     justify-content: space-between;
