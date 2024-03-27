@@ -7,6 +7,12 @@
   pointer-events: none;
 }
 
+h2{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color:rgb(3, 151, 139)
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -35,4 +41,89 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+div#root {
+  align-self: flex-start;
+  width: 50%;
+}
+
+.appBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80vh;
+    border-radius: 10px;
+}
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: darkcyan;
+}
+.collapsed {
+    display: none;
+    background-color: #d0d0d0;
+    border-radius: 10px;
+    padding-left:10px;
+    padding-bottom:1px;
+    margin-bottom: 5px;
+}
+.collapsed.show {
+  display: block;
+}
+
+.expanded {
+    flex-grow: 1;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    height: 90%;
+    overflow: auto;
+    margin-bottom: 1%;
+    padding-left: 10px;
+}
+.input-button-div {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white; /*Esto era un problema porque da un fill color atras del boton */
+}
+.input-button-div input {
+    flex-grow: 1;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    border: 0px;
+    border-radius: 10px;
+}
+.input-button-div button {
+    cursor: pointer;
+    background-color:white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    color: #61dafb;
+    border-width:1px;
+    margin:3px;
+}
+.input-button-div button:hover {
+    background-color: lightgray;
+}
+.input-button-div button:active {
+    animation: click 0.3s forwards;
+}
+@keyframes click {
+    50% { transform: scale(0.9); }
+    100% { transform: scale(1); }
 }

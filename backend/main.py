@@ -3,8 +3,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Any
+import bard_predictor
+from fastapi import FastAPI, UploadFile, Form
+from typing import Optional
 
-# Load environment variables from .env file (if any)
+# Load environment variables from .env file in this folder (if any)
 load_dotenv()
 
 class Response(BaseModel):
@@ -25,10 +28,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.post("/predict", response_model = Response) #Prepare an endpoint in /predict
+async def predict(
+    question: Optional[str] = Form(None), #Get the value in the key question from the form inside the request body, otherwise None. Automatically validate that its a string.
+    file: Optional[UploadFile] = Form(None) #Get the value in the key file from the form inside the request body, otherwise None. Automatically validate that its an UploadFile
+    ) -> Any:
 
-@app.post("/predict", response_model = Response)
-def predict() -> Any:
-  
-  #implement this code block
-  
-  return {"result": "hello world!"}
+    result = bard_predictor.predict(question) if question else 'Please provide a question!'
+    return {'result':result} #Response model response means we have to return a dictionary
