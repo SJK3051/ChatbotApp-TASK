@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Any
-import bard_predictor
+import backend.app.bard_predictor as bard_predictor
 from fastapi import FastAPI, UploadFile, Form
 from typing import Optional
 
