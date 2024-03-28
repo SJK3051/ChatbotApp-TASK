@@ -21,21 +21,26 @@ In this project you find 2 directories
 1. `main.py` which is the entry point to our server
 2. This project has a few Python packages as dependencies, you can install them in your virtual environment using `requirements.txt`. If you were to use other dependencies, then please add them to `requirements.txt`.
 3. We will be using [`conda`](https://docs.conda.io/projects/conda/en/stable/) package manager to create a virtual environment `chatbot` using `conda create -n chatbot python=3.10` and then `conda activate chatbot` to activate the environment.
-4. Then install the python packages using `pip install -r requirements.txt`
+4. Then install the python packages using `pip install -r requirements.txt` (this is because conda enviroment was exported as a pip requirements.txt instead of enviroment.yml) (a better alternative would be to directly create the conda env from the requirements.txt file (conda create --name myenv --file requirements.txt))
+   - If installing on vs code dont forget to make sure the terminal is bash, and to cd to backend before installing. Otherwise the files will be installed to the local pip instead of the conda env.
 
 #### Running the backend server
 
 To launch the server, navigate to the `backend` directory and run:
 
 ##### `uvicorn main:app --reload`
-
 This will start the server at [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
+
+If uvicorn is not recognized and you are using vs code make sure to activate the chatbot environment(which should be in global environments)
+
+To make sure the server is working you can run this on a bash console: curl -X POST http://127.0.0.1:8000/predict -H 'Content-Type:application/json' -d '{}'
+You cannot test it on the browser since the current api provides a post request not a get request.
 ### Frontend
 
 The project structure within the `frontend` directory follows the official `create-react-app` structure as in the [docs](https://create-react-app.dev/docs/folder-structure). Some of the files have been removed for convenience & brevity.
 
-**Requirements**: We are using `node V20.11.1` and `npm 10.2.4`. They can be downloaded via [installer](https://nodejs.org/en). For more information check [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+**Requirements**: We are using `node V20.11.1` and `npm 10.2.4`. They can be downloaded via [installer](https://nodejs.org/en). For more information check [here](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) . Though I sugest installing node and npm via Volta: Installing volta, then closing vs code opening it again, changing directory to frontend and running volta install node
 
 #### How to launch the react app
 
