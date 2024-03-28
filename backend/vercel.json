@@ -14,5 +14,8 @@
     ],
     "env": {
       "APP_MODULE": "main:app"
+    },
+    "config":{
+        "runtime":"python3.10.4"
     }
   }
