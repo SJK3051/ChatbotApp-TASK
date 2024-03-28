@@ -12,8 +12,7 @@ from os import getenv
 #Run fastapi @app with uvicorn if the python file is executed
 if __name__ == "__main__":
     port = int(getenv('PORT',8000))
-    uvicorn.run("api:app",port=port,reload=True) #Run the app method in the api python file.
-
+    uvicorn.run("main:app",port=port,reload=True) #Run the app method in the api python file.
 
 # Load environment variables from .env file in this folder (if any)
 load_dotenv()
